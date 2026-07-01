@@ -205,7 +205,7 @@
     }
     .again-btn:hover { transform: translateY(-3px) scale(1.04); }
 
-    /* Confetti */
+    /* Confetti + celebration pieces */
     .confetti-piece {
       position: fixed;
       pointer-events: none;
@@ -214,6 +214,42 @@
     @keyframes confettiFall {
       0%   { transform: translateY(-20px) rotate(0deg);   opacity: 1; }
       100% { transform: translateY(110vh) rotate(720deg); opacity: 0; }
+    }
+
+    .float-piece {
+      position: fixed;
+      pointer-events: none;
+      font-size: 2rem;
+      animation: floatUp linear forwards;
+      z-index: 9999;
+    }
+    @keyframes floatUp {
+      0%   { transform: translateY(0)     scale(1)   rotate(0deg);   opacity: 1; }
+      100% { transform: translateY(-90vh) scale(0.6) rotate(30deg);  opacity: 0; }
+    }
+
+    /* Big 2566 number burst */
+    .number-burst {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0);
+      font-family: 'Fredoka One', cursive;
+      font-size: clamp(4rem, 18vw, 9rem);
+      background: linear-gradient(90deg, #ff6fb7, #ffe066, #a259ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      pointer-events: none;
+      z-index: 9998;
+      animation: burst 1.2s cubic-bezier(0.34,1.56,0.64,1) forwards;
+      filter: drop-shadow(0 4px 16px rgba(255,111,183,0.5));
+    }
+    @keyframes burst {
+      0%   { transform: translate(-50%,-50%) scale(0);   opacity: 0; }
+      40%  { transform: translate(-50%,-50%) scale(1.2); opacity: 1; }
+      70%  { transform: translate(-50%,-50%) scale(0.95);opacity: 1; }
+      100% { transform: translate(-50%,-50%) scale(1);   opacity: 0; }
     }
 
     /* Music button */
@@ -337,9 +373,57 @@
     }
 
     function startGame(type) {
-      document.getElementById('home').style.display = 'none';
-      buildGrid(type);
-      document.getElementById(`${type}-screen`).classList.add('show');
+      gameCelebration();
+      setTimeout(() => {
+        document.getElementById('home').style.display = 'none';
+        buildGrid(type);
+        document.getElementById(`${type}-screen`).classList.add('show');
+      }, 900);
+    }
+
+    function gameCelebration() {
+      // Big 2566 number
+      const num = document.createElement('div');
+      num.className = 'number-burst';
+      num.textContent = '2566';
+      document.body.appendChild(num);
+      setTimeout(() => num.remove(), 1400);
+
+      // Floating stars and smileys
+      const floaters = ['⭐','🌟','💫','✨','😊','😄','🎉','⭐','🌟','😊','💫','⭐'];
+      floaters.forEach((icon, i) => {
+        const el = document.createElement('div');
+        el.className = 'float-piece';
+        el.textContent = icon;
+        el.style.cssText = `
+          left: ${10 + Math.random()*80}%;
+          bottom: ${10 + Math.random()*30}%;
+          font-size: ${1.5 + Math.random()*2}rem;
+          animation-duration: ${1 + Math.random()*1.2}s;
+          animation-delay: ${i * 0.06}s;
+        `;
+        document.body.appendChild(el);
+        setTimeout(() => el.remove(), 2500);
+      });
+
+      // Confetti burst
+      const colors = ['#ff6fb7','#a259ff','#4fc3f7','#ffe066','#43e97b','#ff9f43'];
+      for (let i = 0; i < 70; i++) {
+        const c = document.createElement('div');
+        c.className = 'confetti-piece';
+        const size = 8 + Math.random() * 10;
+        c.style.cssText = `
+          left:${Math.random()*100}vw;
+          top: -10px;
+          width:${size}px; height:${size}px;
+          background:${colors[Math.floor(Math.random()*colors.length)]};
+          border-radius:${Math.random() > 0.5 ? '50%' : '2px'};
+          animation-duration:${1.2 + Math.random()*1.5}s;
+          animation-delay:${Math.random()*0.4}s;
+        `;
+        document.body.appendChild(c);
+        setTimeout(() => c.remove(), 3000);
+      }
     }
 
     function goHome() {
@@ -391,7 +475,7 @@
       [784,0.25],[659,0.25],[587,0.25],[523,1.0],
       [0,0.5],
     ];
-    const BEAT = 0.2; // fast and punchy
+    const BEAT = 0.26; // relaxed, not too fast
 
     function playNote(freq, startTime, dur) {
       if (freq === 0) return;
@@ -399,10 +483,10 @@
       const gain = audioCtx.createGain();
       osc.connect(gain);
       gain.connect(audioCtx.destination);
-      osc.type = 'square'; // 8-bit video game sound!
+      osc.type = 'triangle'; // soft and warm
       osc.frequency.setValueAtTime(freq, startTime);
-      gain.gain.setValueAtTime(0.12, startTime);
-      gain.gain.linearRampToValueAtTime(0.1, startTime + dur * 0.6);
+      gain.gain.setValueAtTime(0, startTime);
+      gain.gain.linearRampToValueAtTime(0.14, startTime + 0.04);
       gain.gain.linearRampToValueAtTime(0, startTime + dur);
       osc.start(startTime);
       osc.stop(startTime + dur);
@@ -414,50 +498,27 @@
       osc.connect(gain);
       gain.connect(audioCtx.destination);
       osc.type = 'sine';
-      osc.frequency.setValueAtTime(180, startTime);
-      osc.frequency.exponentialRampToValueAtTime(40, startTime + 0.15);
-      gain.gain.setValueAtTime(0.5, startTime);
-      gain.gain.exponentialRampToValueAtTime(0.001, startTime + 0.2);
+      osc.frequency.setValueAtTime(120, startTime);
+      osc.frequency.exponentialRampToValueAtTime(40, startTime + 0.18);
+      gain.gain.setValueAtTime(0.18, startTime); // quiet kick
+      gain.gain.exponentialRampToValueAtTime(0.001, startTime + 0.22);
       osc.start(startTime);
-      osc.stop(startTime + 0.2);
-    }
-
-    function playHihat(startTime, vol) {
-      const size   = Math.floor(audioCtx.sampleRate * 0.04);
-      const buf    = audioCtx.createBuffer(1, size, audioCtx.sampleRate);
-      const data   = buf.getChannelData(0);
-      for (let i = 0; i < size; i++) data[i] = Math.random() * 2 - 1;
-      const src    = audioCtx.createBufferSource();
-      src.buffer   = buf;
-      const filter = audioCtx.createBiquadFilter();
-      filter.type  = 'highpass';
-      filter.frequency.value = 7000;
-      const gain   = audioCtx.createGain();
-      gain.gain.setValueAtTime(vol, startTime);
-      gain.gain.exponentialRampToValueAtTime(0.001, startTime + 0.04);
-      src.connect(filter); filter.connect(gain); gain.connect(audioCtx.destination);
-      src.start(startTime);
-      src.stop(startTime + 0.05);
+      osc.stop(startTime + 0.22);
     }
 
     function scheduleSong(startTime) {
       let t = startTime;
       const totalUnits = SONG.reduce((s, [,b]) => s + b, 0);
 
-      // melody
       SONG.forEach(([freq, beats]) => {
-        playNote(freq, t, beats * BEAT * 0.82);
+        playNote(freq, t, beats * BEAT * 0.85);
         t += beats * BEAT;
       });
 
-      // beat layer over entire song
+      // just a gentle kick on beat 1 of every 4 — no hi-hats
       const ticks = Math.ceil(totalUnits);
       for (let i = 0; i < ticks; i++) {
-        const bt = startTime + i * BEAT;
-        if (i % 4 === 0) playKick(bt);               // kick on 1
-        if (i % 4 === 2) playKick(bt);               // kick on 3
-        playHihat(bt, 0.06);                          // hihat on every beat
-        playHihat(bt + BEAT * 0.5, 0.03);            // offbeat hihat
+        if (i % 4 === 0) playKick(startTime + i * BEAT);
       }
 
       return t;
