@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="noindex, nofollow">
-  <title>Hazel's World ✨</title>
+  <title>Pick Your Favorite Animal! 🐾</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;700;900&display=swap');
 
@@ -12,129 +12,231 @@
 
     body {
       min-height: 100vh;
-      background: linear-gradient(135deg, #ffd6f0 0%, #c4e1ff 50%, #d4f7d4 100%);
+      background: linear-gradient(135deg, #ffe4f0 0%, #e4d4ff 50%, #d4f0ff 100%);
       font-family: 'Nunito', sans-serif;
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
-      overflow: hidden;
-      position: relative;
-    }
-
-    /* Floating bubbles background */
-    .bubble {
-      position: fixed;
-      border-radius: 50%;
-      opacity: 0.3;
-      animation: float linear infinite;
-      pointer-events: none;
-    }
-    @keyframes float {
-      0%   { transform: translateY(110vh) rotate(0deg); }
-      100% { transform: translateY(-10vh) rotate(360deg); }
-    }
-
-    .hero {
-      text-align: center;
-      z-index: 1;
-      padding: 2rem;
-    }
-
-    .crown {
-      font-size: 5rem;
-      animation: bounce 1.5s ease-in-out infinite;
-    }
-    @keyframes bounce {
-      0%, 100% { transform: translateY(0); }
-      50%       { transform: translateY(-18px); }
+      padding: 2rem 1rem;
     }
 
     h1 {
       font-family: 'Fredoka One', cursive;
-      font-size: clamp(2.8rem, 10vw, 5rem);
-      background: linear-gradient(90deg, #ff6fb7, #a259ff, #4fc3f7, #43e97b);
+      font-size: clamp(2rem, 8vw, 3.5rem);
+      background: linear-gradient(90deg, #ff6fb7, #a259ff, #4fc3f7);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
-      margin: 0.3rem 0;
-      line-height: 1.1;
-      filter: drop-shadow(0 2px 8px rgba(0,0,0,0.12));
+      text-align: center;
+      margin-bottom: 0.4rem;
+      line-height: 1.2;
     }
 
-    .tagline {
-      font-size: clamp(1rem, 4vw, 1.4rem);
+    .subtitle {
+      font-size: 1.1rem;
       color: #7b5ea7;
       font-weight: 700;
-      margin-top: 0.5rem;
-      letter-spacing: 0.02em;
+      text-align: center;
+      margin-bottom: 2rem;
     }
 
-    .sparkles {
-      font-size: 2rem;
-      margin-top: 1.2rem;
-      animation: spin-slow 4s linear infinite;
-      display: inline-block;
-    }
-    @keyframes spin-slow {
-      0%   { transform: rotate(0deg) scale(1); }
-      50%  { transform: rotate(180deg) scale(1.2); }
-      100% { transform: rotate(360deg) scale(1); }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 1rem;
+      max-width: 700px;
+      width: 100%;
     }
 
-    .card {
-      background: rgba(255,255,255,0.65);
-      backdrop-filter: blur(12px);
-      border-radius: 2rem;
-      padding: 2rem 2.5rem;
-      margin-top: 2rem;
-      box-shadow: 0 8px 32px rgba(162,89,255,0.15);
-      max-width: 420px;
-      font-size: 1.1rem;
+    .animal-card {
+      background: white;
+      border-radius: 1.5rem;
+      padding: 1.2rem 0.8rem;
+      text-align: center;
+      cursor: pointer;
+      box-shadow: 0 4px 16px rgba(162,89,255,0.12);
+      transition: transform 0.15s, box-shadow 0.15s;
+      border: 3px solid transparent;
+      user-select: none;
+    }
+
+    .animal-card:hover {
+      transform: translateY(-6px) scale(1.04);
+      box-shadow: 0 10px 28px rgba(162,89,255,0.22);
+      border-color: #a259ff;
+    }
+
+    .animal-card:active {
+      transform: scale(0.96);
+    }
+
+    .animal-emoji {
+      font-size: 3.5rem;
+      display: block;
+      margin-bottom: 0.4rem;
+      line-height: 1;
+    }
+
+    .animal-name {
+      font-size: 1rem;
+      font-weight: 900;
       color: #4a3060;
-      font-weight: 700;
-      line-height: 1.6;
     }
 
-    .stars {
-      margin-top: 1.5rem;
-      font-size: 1.8rem;
-      letter-spacing: 0.3rem;
+    /* Result screen */
+    .result {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      animation: popIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    @keyframes popIn {
+      0%   { transform: scale(0.5); opacity: 0; }
+      100% { transform: scale(1);   opacity: 1; }
+    }
+
+    .result.show { display: flex; }
+
+    .big-animal {
+      font-size: 8rem;
+      margin-bottom: 0.5rem;
+      animation: wiggle 0.6s ease-in-out 0.1s;
+    }
+
+    @keyframes wiggle {
+      0%,100% { transform: rotate(0deg); }
+      25%      { transform: rotate(-12deg); }
+      75%      { transform: rotate(12deg); }
+    }
+
+    .result h2 {
+      font-family: 'Fredoka One', cursive;
+      font-size: clamp(1.8rem, 7vw, 3rem);
+      background: linear-gradient(90deg, #ff6fb7, #a259ff, #4fc3f7);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 0.5rem;
+    }
+
+    .result-msg {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #7b5ea7;
+      margin-bottom: 1.8rem;
+    }
+
+    .again-btn {
+      background: linear-gradient(135deg, #ff6fb7, #a259ff);
+      color: white;
+      border: none;
+      border-radius: 2rem;
+      padding: 0.9rem 2.2rem;
+      font-family: 'Fredoka One', cursive;
+      font-size: 1.3rem;
+      cursor: pointer;
+      box-shadow: 0 4px 16px rgba(162,89,255,0.3);
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+
+    .again-btn:hover {
+      transform: translateY(-3px) scale(1.04);
+      box-shadow: 0 8px 24px rgba(162,89,255,0.4);
+    }
+
+    /* Confetti */
+    .confetti-piece {
+      position: fixed;
+      width: 12px;
+      height: 12px;
+      border-radius: 2px;
+      pointer-events: none;
+      animation: confettiFall linear forwards;
+    }
+
+    @keyframes confettiFall {
+      0%   { transform: translateY(-20px) rotate(0deg);   opacity: 1; }
+      100% { transform: translateY(110vh) rotate(720deg); opacity: 0; }
     }
   </style>
 </head>
 <body>
 
-  <!-- Floating bubbles -->
+  <div id="picker">
+    <h1>🐾 Pick Your Favorite Animal!</h1>
+    <p class="subtitle">Tap the one you love the most!</p>
+    <div class="grid" id="grid"></div>
+  </div>
+
+  <div class="result" id="result">
+    <div class="big-animal" id="bigEmoji"></div>
+    <h2 id="resultTitle"></h2>
+    <p class="result-msg" id="resultMsg"></p>
+    <button class="again-btn" onclick="showPicker()">🔄 Pick Again!</button>
+  </div>
+
   <script>
-    const colors = ['#ffd6f0','#c4e1ff','#ffe4a0','#d4f7d4','#ffc9f0','#b8f0ff'];
-    for (let i = 0; i < 18; i++) {
-      const b = document.createElement('div');
-      b.className = 'bubble';
-      const size = 30 + Math.random() * 80;
-      b.style.cssText = `
-        width:${size}px; height:${size}px;
-        left:${Math.random()*100}%;
-        background:${colors[Math.floor(Math.random()*colors.length)]};
-        animation-duration:${6 + Math.random()*10}s;
-        animation-delay:${Math.random()*8}s;
-      `;
-      document.body.appendChild(b);
+    const animals = [
+      { emoji: '🐶', name: 'Dog',       msg: 'Dogs are the BEST friends ever! 🦴' },
+      { emoji: '🐱', name: 'Cat',       msg: 'Cats are so fluffy and cute! 😺' },
+      { emoji: '🐰', name: 'Bunny',     msg: 'Bunnies have the softest ears! 🥕' },
+      { emoji: '🐼', name: 'Panda',     msg: 'Pandas are so cuddly and round! 🎋' },
+      { emoji: '🦊', name: 'Fox',       msg: 'Foxes are clever and super pretty! 🍂' },
+      { emoji: '🐨', name: 'Koala',     msg: 'Koalas sleep in trees — so cozy! 🌿' },
+      { emoji: '🦁', name: 'Lion',      msg: 'Lions are brave and mighty! 👑' },
+      { emoji: '🐸', name: 'Frog',      msg: 'Frogs love to jump and swim! 💚' },
+      { emoji: '🦋', name: 'Butterfly', msg: 'Butterflies are magical and beautiful! 🌸' },
+      { emoji: '🐬', name: 'Dolphin',   msg: 'Dolphins are super smart and playful! 🌊' },
+      { emoji: '🦄', name: 'Unicorn',   msg: 'Unicorns are the most magical of all! ✨' },
+      { emoji: '🐙', name: 'Octopus',   msg: 'Octopuses have EIGHT arms — so cool! 🌊' },
+    ];
+
+    const grid = document.getElementById('grid');
+
+    animals.forEach(a => {
+      const card = document.createElement('div');
+      card.className = 'animal-card';
+      card.innerHTML = `<span class="animal-emoji">${a.emoji}</span><div class="animal-name">${a.name}</div>`;
+      card.onclick = () => pick(a);
+      grid.appendChild(card);
+    });
+
+    function pick(animal) {
+      document.getElementById('picker').style.display = 'none';
+      const result = document.getElementById('result');
+      document.getElementById('bigEmoji').textContent = animal.emoji;
+      document.getElementById('resultTitle').textContent = `You love ${animal.name}s!`;
+      document.getElementById('resultMsg').textContent = animal.msg;
+      result.classList.add('show');
+      launchConfetti();
+    }
+
+    function showPicker() {
+      document.getElementById('result').classList.remove('show');
+      document.getElementById('picker').style.display = '';
+    }
+
+    function launchConfetti() {
+      const colors = ['#ff6fb7','#a259ff','#4fc3f7','#ffe066','#43e97b','#ff9f43'];
+      for (let i = 0; i < 60; i++) {
+        const c = document.createElement('div');
+        c.className = 'confetti-piece';
+        c.style.cssText = `
+          left: ${Math.random()*100}vw;
+          background: ${colors[Math.floor(Math.random()*colors.length)]};
+          animation-duration: ${1.5 + Math.random()*2}s;
+          animation-delay: ${Math.random()*0.6}s;
+          width: ${8 + Math.random()*10}px;
+          height: ${8 + Math.random()*10}px;
+          border-radius: ${Math.random() > 0.5 ? '50%' : '2px'};
+        `;
+        document.body.appendChild(c);
+        setTimeout(() => c.remove(), 3500);
+      }
     }
   </script>
-
-  <div class="hero">
-    <div class="crown">👑</div>
-    <h1>Hazel's World</h1>
-    <p class="tagline">This page belongs to Hazel ✨</p>
-    <div class="sparkles">🌸</div>
-
-    <div class="card">
-      Something magical is being built here.<br>
-      Stay tuned! 🦋🌈⭐
-      <div class="stars">⭐🌟💫</div>
-    </div>
-  </div>
 
 </body>
 </html>
