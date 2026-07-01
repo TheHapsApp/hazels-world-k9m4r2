@@ -275,6 +275,48 @@
     .toilet-char .guy .arms  { font-size: 1rem; letter-spacing: -0.2rem; margin-bottom: -0.2rem; }
     .toilet-char .guy .pot   { font-size: 2.8rem; }
 
+    /* Kid yelling at mom */
+    .mom-scene {
+      position: fixed;
+      pointer-events: none;
+      z-index: 9999;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      animation: floatUp ease-out forwards;
+    }
+    .mom-scene .bubble {
+      background: #fff3cd;
+      border: 2px solid #ffc107;
+      border-radius: 1rem;
+      padding: 0.4rem 0.8rem;
+      font-family: 'Nunito', sans-serif;
+      font-weight: 900;
+      font-size: 0.78rem;
+      color: #4a3060;
+      text-align: center;
+      line-height: 1.4;
+      white-space: nowrap;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+      margin-bottom: 0.2rem;
+      position: relative;
+    }
+    .mom-scene .bubble::after {
+      content: '';
+      position: absolute;
+      bottom: -9px;
+      left: 30%;
+      border: 5px solid transparent;
+      border-top-color: #ffc107;
+    }
+    .mom-scene .people {
+      display: flex;
+      align-items: flex-end;
+      gap: 0.2rem;
+      font-size: 2.4rem;
+      line-height: 1;
+    }
+
     /* Big 2566 number burst */
     .number-burst {
       position: fixed;
@@ -478,6 +520,23 @@
         document.body.appendChild(el);
         setTimeout(() => el.remove(), 5000);
       });
+
+      // Kid yelling at mom
+      const momEl = document.createElement('div');
+      momEl.className = 'mom-scene';
+      momEl.innerHTML = `
+        <div class="bubble">MOM!! PLEASE I NEED TO GO PEE!<br>I NEED THE TOILET!! 🚽💦</div>
+        <div class="people">😤👩</div>
+      `;
+      momEl.style.cssText = `
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: 2%;
+        animation-duration: 2.8s;
+        animation-delay: 0.5s;
+      `;
+      document.body.appendChild(momEl);
+      setTimeout(() => momEl.remove(), 5000);
 
       // Confetti burst
       const colors = ['#ff6fb7','#a259ff','#4fc3f7','#ffe066','#43e97b','#ff9f43'];
