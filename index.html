@@ -219,14 +219,50 @@
     .float-piece {
       position: fixed;
       pointer-events: none;
-      font-size: 2rem;
-      animation: floatUp linear forwards;
+      font-size: 3.5rem;
+      animation: floatUp ease-out forwards;
       z-index: 9999;
+      line-height: 1;
     }
     @keyframes floatUp {
-      0%   { transform: translateY(0)     scale(1)   rotate(0deg);   opacity: 1; }
-      100% { transform: translateY(-90vh) scale(0.6) rotate(30deg);  opacity: 0; }
+      0%   { transform: translateY(0)      scale(1)   rotate(-5deg); opacity: 1; }
+      60%  { opacity: 1; }
+      100% { transform: translateY(-85vh)  scale(0.7) rotate(15deg); opacity: 0; }
     }
+
+    /* Toilet character bubble */
+    .toilet-char {
+      position: fixed;
+      pointer-events: none;
+      z-index: 9999;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      animation: floatUp ease-out forwards;
+    }
+    .toilet-char .bubble {
+      background: white;
+      border-radius: 1rem;
+      padding: 0.3rem 0.7rem;
+      font-family: 'Nunito', sans-serif;
+      font-weight: 900;
+      font-size: 0.85rem;
+      color: #4a3060;
+      white-space: nowrap;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+      margin-bottom: 0.2rem;
+      position: relative;
+    }
+    .toilet-char .bubble::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 50%;
+      transform: translateX(-50%);
+      border: 5px solid transparent;
+      border-top-color: white;
+    }
+    .toilet-char .icon { font-size: 3rem; line-height: 1; }
 
     /* Big 2566 number burst */
     .number-burst {
@@ -389,21 +425,37 @@
       document.body.appendChild(num);
       setTimeout(() => num.remove(), 1400);
 
-      // Floating stars and smileys
-      const floaters = ['⭐','🌟','😊','❤️','😍','💩','💫','😊','❤️','💩','😍','⭐','💩','🌟','❤️','😊','💩','✨','😍','💩'];
+      // Big visible floating emojis
+      const floaters = ['💩','😍','❤️','💩','😍','❤️','💩','😍','❤️','💩','⭐','💩','😍','❤️','💩'];
       floaters.forEach((icon, i) => {
         const el = document.createElement('div');
         el.className = 'float-piece';
         el.textContent = icon;
         el.style.cssText = `
-          left: ${10 + Math.random()*80}%;
-          bottom: ${10 + Math.random()*30}%;
-          font-size: ${1.5 + Math.random()*2}rem;
-          animation-duration: ${1 + Math.random()*1.2}s;
-          animation-delay: ${i * 0.06}s;
+          left: ${5 + Math.random()*88}%;
+          bottom: 5%;
+          font-size: ${3 + Math.random()*2.5}rem;
+          animation-duration: ${1.6 + Math.random()*1}s;
+          animation-delay: ${i * 0.08}s;
         `;
         document.body.appendChild(el);
-        setTimeout(() => el.remove(), 2500);
+        setTimeout(() => el.remove(), 3500);
+      });
+
+      // Toilet characters with speech bubbles
+      const toiletSays = ['I gotta go! 😅', "I can't hold it! 🚽", 'NEED THE TOILET! 💦'];
+      toiletSays.forEach((msg, i) => {
+        const el = document.createElement('div');
+        el.className = 'toilet-char';
+        el.innerHTML = `<div class="bubble">${msg}</div><div class="icon">🚽</div>`;
+        el.style.cssText = `
+          left: ${15 + i * 30}%;
+          bottom: 5%;
+          animation-duration: ${2 + i * 0.3}s;
+          animation-delay: ${0.2 + i * 0.25}s;
+        `;
+        document.body.appendChild(el);
+        setTimeout(() => el.remove(), 4000);
       });
 
       // Confetti burst
