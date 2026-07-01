@@ -368,7 +368,7 @@
     let musicPlaying = false;
     let musicTimeout = null;
 
-    // Hazel's Wiggle Song — a totally made-up original tune! [freq Hz, beats]
+    // Hazel's Wiggle Song — made-up, 8-bit chiptune style! [freq Hz, beat-units]
     const SONG = [
       // Part 1 — boing boing boing!
       [523,0.25],[659,0.25],[784,0.5],
@@ -391,29 +391,76 @@
       [784,0.25],[659,0.25],[587,0.25],[523,1.0],
       [0,0.5],
     ];
-    const BEAT = 0.24; // seconds per beat — nice and bouncy
+    const BEAT = 0.2; // fast and punchy
 
     function playNote(freq, startTime, dur) {
+      if (freq === 0) return;
       const osc  = audioCtx.createOscillator();
       const gain = audioCtx.createGain();
       osc.connect(gain);
       gain.connect(audioCtx.destination);
-      osc.type = 'triangle';
+      osc.type = 'square'; // 8-bit video game sound!
       osc.frequency.setValueAtTime(freq, startTime);
-      gain.gain.setValueAtTime(0, startTime);
-      gain.gain.linearRampToValueAtTime(0.18, startTime + 0.03);
-      gain.gain.linearRampToValueAtTime(0, startTime + dur - 0.04);
+      gain.gain.setValueAtTime(0.12, startTime);
+      gain.gain.linearRampToValueAtTime(0.1, startTime + dur * 0.6);
+      gain.gain.linearRampToValueAtTime(0, startTime + dur);
       osc.start(startTime);
       osc.stop(startTime + dur);
     }
 
+    function playKick(startTime) {
+      const osc  = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+      osc.connect(gain);
+      gain.connect(audioCtx.destination);
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(180, startTime);
+      osc.frequency.exponentialRampToValueAtTime(40, startTime + 0.15);
+      gain.gain.setValueAtTime(0.5, startTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, startTime + 0.2);
+      osc.start(startTime);
+      osc.stop(startTime + 0.2);
+    }
+
+    function playHihat(startTime, vol) {
+      const size   = Math.floor(audioCtx.sampleRate * 0.04);
+      const buf    = audioCtx.createBuffer(1, size, audioCtx.sampleRate);
+      const data   = buf.getChannelData(0);
+      for (let i = 0; i < size; i++) data[i] = Math.random() * 2 - 1;
+      const src    = audioCtx.createBufferSource();
+      src.buffer   = buf;
+      const filter = audioCtx.createBiquadFilter();
+      filter.type  = 'highpass';
+      filter.frequency.value = 7000;
+      const gain   = audioCtx.createGain();
+      gain.gain.setValueAtTime(vol, startTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, startTime + 0.04);
+      src.connect(filter); filter.connect(gain); gain.connect(audioCtx.destination);
+      src.start(startTime);
+      src.stop(startTime + 0.05);
+    }
+
     function scheduleSong(startTime) {
       let t = startTime;
+      const totalUnits = SONG.reduce((s, [,b]) => s + b, 0);
+
+      // melody
       SONG.forEach(([freq, beats]) => {
-        playNote(freq, t, beats * BEAT * 0.9);
+        playNote(freq, t, beats * BEAT * 0.82);
         t += beats * BEAT;
       });
-      return t; // when the song ends
+
+      // beat layer over entire song
+      const ticks = Math.ceil(totalUnits);
+      for (let i = 0; i < ticks; i++) {
+        const bt = startTime + i * BEAT;
+        if (i % 4 === 0) playKick(bt);               // kick on 1
+        if (i % 4 === 2) playKick(bt);               // kick on 3
+        playHihat(bt, 0.06);                          // hihat on every beat
+        playHihat(bt + BEAT * 0.5, 0.03);            // offbeat hihat
+      }
+
+      return t;
     }
 
     function startMusicLoop() {
