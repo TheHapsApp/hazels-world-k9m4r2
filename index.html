@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="noindex, nofollow">
-  <title>Pick Your Favorite Animal! 🐾</title>
+  <title>Hazel's Fun Games! 🌟</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;700;900&display=swap');
 
@@ -17,12 +17,91 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 2rem 1rem;
+      padding: 2rem 1rem 3rem;
     }
+
+    /* ── HOME ── */
+    #home { display: flex; flex-direction: column; align-items: center; width: 100%; }
+
+    .site-title {
+      font-family: 'Fredoka One', cursive;
+      font-size: clamp(2rem, 9vw, 3.8rem);
+      background: linear-gradient(90deg, #ff6fb7, #a259ff, #4fc3f7);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-align: center;
+      line-height: 1.2;
+      margin-bottom: 0.3rem;
+    }
+
+    .site-sub {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #7b5ea7;
+      text-align: center;
+      margin-bottom: 2.2rem;
+    }
+
+    .game-choices {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.2rem;
+      justify-content: center;
+      max-width: 520px;
+      width: 100%;
+    }
+
+    .game-btn {
+      flex: 1 1 200px;
+      background: white;
+      border: 3px solid transparent;
+      border-radius: 2rem;
+      padding: 2rem 1.2rem;
+      text-align: center;
+      cursor: pointer;
+      box-shadow: 0 6px 20px rgba(162,89,255,0.15);
+      transition: transform 0.15s, box-shadow 0.15s, border-color 0.15s;
+    }
+
+    .game-btn:hover {
+      transform: translateY(-6px) scale(1.04);
+      box-shadow: 0 12px 32px rgba(162,89,255,0.25);
+      border-color: #a259ff;
+    }
+
+    .game-btn .big { font-size: 4rem; display: block; margin-bottom: 0.5rem; }
+
+    .game-btn .label {
+      font-family: 'Fredoka One', cursive;
+      font-size: 1.3rem;
+      color: #4a3060;
+    }
+
+    /* ── GAME SCREEN ── */
+    .game-screen { display: none; flex-direction: column; align-items: center; width: 100%; }
+    .game-screen.show { display: flex; }
+
+    .back-btn {
+      align-self: flex-start;
+      background: rgba(255,255,255,0.7);
+      border: none;
+      border-radius: 2rem;
+      padding: 0.5rem 1.2rem;
+      font-family: 'Nunito', sans-serif;
+      font-weight: 900;
+      font-size: 1rem;
+      color: #7b5ea7;
+      cursor: pointer;
+      margin-bottom: 1.2rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      transition: transform 0.1s;
+    }
+    .back-btn:hover { transform: scale(1.05); }
 
     h1 {
       font-family: 'Fredoka One', cursive;
-      font-size: clamp(2rem, 8vw, 3.5rem);
+      font-size: clamp(1.8rem, 7vw, 3rem);
       background: linear-gradient(90deg, #ff6fb7, #a259ff, #4fc3f7);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
@@ -33,22 +112,22 @@
     }
 
     .subtitle {
-      font-size: 1.1rem;
+      font-size: 1rem;
       color: #7b5ea7;
       font-weight: 700;
       text-align: center;
-      margin-bottom: 2rem;
+      margin-bottom: 1.6rem;
     }
 
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
       gap: 1rem;
-      max-width: 700px;
+      max-width: 680px;
       width: 100%;
     }
 
-    .animal-card {
+    .pick-card {
       background: white;
       border-radius: 1.5rem;
       padding: 1.2rem 0.8rem;
@@ -60,35 +139,21 @@
       user-select: none;
     }
 
-    .animal-card:hover {
+    .pick-card:hover {
       transform: translateY(-6px) scale(1.04);
       box-shadow: 0 10px 28px rgba(162,89,255,0.22);
       border-color: #a259ff;
     }
 
-    .animal-card:active {
-      transform: scale(0.96);
-    }
+    .pick-card:active { transform: scale(0.96); }
 
-    .animal-emoji {
-      font-size: 3.5rem;
-      display: block;
-      margin-bottom: 0.4rem;
-      line-height: 1;
-    }
+    .pick-emoji { font-size: 3.2rem; display: block; margin-bottom: 0.4rem; line-height: 1; }
+    .pick-name  { font-size: 0.95rem; font-weight: 900; color: #4a3060; }
 
-    .animal-name {
-      font-size: 1rem;
-      font-weight: 900;
-      color: #4a3060;
-    }
-
-    /* Result screen */
-    .result {
-      display: none;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
+    /* ── RESULT ── */
+    .result { display: none; flex-direction: column; align-items: center; text-align: center; }
+    .result.show {
+      display: flex;
       animation: popIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
 
@@ -97,9 +162,7 @@
       100% { transform: scale(1);   opacity: 1; }
     }
 
-    .result.show { display: flex; }
-
-    .big-animal {
+    .big-pick {
       font-size: 8rem;
       margin-bottom: 0.5rem;
       animation: wiggle 0.6s ease-in-out 0.1s;
@@ -113,7 +176,7 @@
 
     .result h2 {
       font-family: 'Fredoka One', cursive;
-      font-size: clamp(1.8rem, 7vw, 3rem);
+      font-size: clamp(1.6rem, 6vw, 2.8rem);
       background: linear-gradient(90deg, #ff6fb7, #a259ff, #4fc3f7);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
@@ -122,7 +185,7 @@
     }
 
     .result-msg {
-      font-size: 1.2rem;
+      font-size: 1.1rem;
       font-weight: 700;
       color: #7b5ea7;
       margin-bottom: 1.8rem;
@@ -138,24 +201,16 @@
       font-size: 1.3rem;
       cursor: pointer;
       box-shadow: 0 4px 16px rgba(162,89,255,0.3);
-      transition: transform 0.15s, box-shadow 0.15s;
+      transition: transform 0.15s;
     }
-
-    .again-btn:hover {
-      transform: translateY(-3px) scale(1.04);
-      box-shadow: 0 8px 24px rgba(162,89,255,0.4);
-    }
+    .again-btn:hover { transform: translateY(-3px) scale(1.04); }
 
     /* Confetti */
     .confetti-piece {
       position: fixed;
-      width: 12px;
-      height: 12px;
-      border-radius: 2px;
       pointer-events: none;
       animation: confettiFall linear forwards;
     }
-
     @keyframes confettiFall {
       0%   { transform: translateY(-20px) rotate(0deg);   opacity: 1; }
       100% { transform: translateY(110vh) rotate(720deg); opacity: 0; }
@@ -164,58 +219,119 @@
 </head>
 <body>
 
-  <div id="picker">
-    <h1>🐾 Pick Your Favorite Animal!</h1>
-    <p class="subtitle">Tap the one you love the most!</p>
-    <div class="grid" id="grid"></div>
+  <!-- HOME -->
+  <div id="home">
+    <h1 class="site-title">🌟 Hazel's Fun Games!</h1>
+    <p class="site-sub">Pick a game to play!</p>
+    <div class="game-choices">
+      <div class="game-btn" onclick="startGame('animals')">
+        <span class="big">🐾</span>
+        <div class="label">Pick Your Favorite Animal!</div>
+      </div>
+      <div class="game-btn" onclick="startGame('foods')">
+        <span class="big">🍕</span>
+        <div class="label">Pick Your Favorite Food!</div>
+      </div>
+    </div>
   </div>
 
-  <div class="result" id="result">
-    <div class="big-animal" id="bigEmoji"></div>
-    <h2 id="resultTitle"></h2>
-    <p class="result-msg" id="resultMsg"></p>
-    <button class="again-btn" onclick="showPicker()">🔄 Pick Again!</button>
+  <!-- ANIMAL GAME -->
+  <div class="game-screen" id="animals-screen">
+    <button class="back-btn" onclick="goHome()">← Back to Games</button>
+    <h1>🐾 Pick Your Favorite Animal!</h1>
+    <p class="subtitle">Tap the one you love the most!</p>
+    <div class="grid" id="animals-grid"></div>
+    <div class="result" id="animals-result">
+      <div class="big-pick" id="animals-big"></div>
+      <h2 id="animals-title"></h2>
+      <p class="result-msg" id="animals-msg"></p>
+      <button class="again-btn" onclick="resetGame('animals')">🔄 Pick Again!</button>
+    </div>
+  </div>
+
+  <!-- FOOD GAME -->
+  <div class="game-screen" id="foods-screen">
+    <button class="back-btn" onclick="goHome()">← Back to Games</button>
+    <h1>🍕 Pick Your Favorite Food!</h1>
+    <p class="subtitle">Tap the yummiest one!</p>
+    <div class="grid" id="foods-grid"></div>
+    <div class="result" id="foods-result">
+      <div class="big-pick" id="foods-big"></div>
+      <h2 id="foods-title"></h2>
+      <p class="result-msg" id="foods-msg"></p>
+      <button class="again-btn" onclick="resetGame('foods')">🔄 Pick Again!</button>
+    </div>
   </div>
 
   <script>
-    const animals = [
-      { emoji: '🐶', name: 'Dog',       msg: 'Dogs are the BEST friends ever! 🦴' },
-      { emoji: '🐱', name: 'Cat',       msg: 'Cats are so fluffy and cute! 😺' },
-      { emoji: '🐰', name: 'Bunny',     msg: 'Bunnies have the softest ears! 🥕' },
-      { emoji: '🐼', name: 'Panda',     msg: 'Pandas are so cuddly and round! 🎋' },
-      { emoji: '🦊', name: 'Fox',       msg: 'Foxes are clever and super pretty! 🍂' },
-      { emoji: '🐨', name: 'Koala',     msg: 'Koalas sleep in trees — so cozy! 🌿' },
-      { emoji: '🦁', name: 'Lion',      msg: 'Lions are brave and mighty! 👑' },
-      { emoji: '🐸', name: 'Frog',      msg: 'Frogs love to jump and swim! 💚' },
-      { emoji: '🦋', name: 'Butterfly', msg: 'Butterflies are magical and beautiful! 🌸' },
-      { emoji: '🐬', name: 'Dolphin',   msg: 'Dolphins are super smart and playful! 🌊' },
-      { emoji: '🦄', name: 'Unicorn',   msg: 'Unicorns are the most magical of all! ✨' },
-      { emoji: '🐙', name: 'Octopus',   msg: 'Octopuses have EIGHT arms — so cool! 🌊' },
-    ];
+    const DATA = {
+      animals: [
+        { emoji: '🐶', name: 'Dog',       msg: 'Dogs are the BEST friends ever! 🦴' },
+        { emoji: '🐱', name: 'Cat',       msg: 'Cats are so fluffy and cute! 😺' },
+        { emoji: '🐰', name: 'Bunny',     msg: 'Bunnies have the softest ears! 🥕' },
+        { emoji: '🐼', name: 'Panda',     msg: 'Pandas are so cuddly and round! 🎋' },
+        { emoji: '🦊', name: 'Fox',       msg: 'Foxes are clever and super pretty! 🍂' },
+        { emoji: '🐨', name: 'Koala',     msg: 'Koalas sleep in trees — so cozy! 🌿' },
+        { emoji: '🦁', name: 'Lion',      msg: 'Lions are brave and mighty! 👑' },
+        { emoji: '🐸', name: 'Frog',      msg: 'Frogs love to jump and swim! 💚' },
+        { emoji: '🦋', name: 'Butterfly', msg: 'Butterflies are magical and beautiful! 🌸' },
+        { emoji: '🐬', name: 'Dolphin',   msg: 'Dolphins are super smart and playful! 🌊' },
+        { emoji: '🦄', name: 'Unicorn',   msg: 'Unicorns are the most magical of all! ✨' },
+        { emoji: '🐙', name: 'Octopus',   msg: 'Octopuses have EIGHT arms — so cool! 🌊' },
+      ],
+      foods: [
+        { emoji: '🍕', name: 'Pizza',      msg: 'Pizza is SO yummy — best food ever! 🧀' },
+        { emoji: '🍦', name: 'Ice Cream',  msg: 'Ice cream is the sweetest treat! 🍓' },
+        { emoji: '🌮', name: 'Taco',       msg: 'Tacos are crunchy and delicious! 🌶️' },
+        { emoji: '🍔', name: 'Burger',     msg: 'Burgers are big and SO tasty! 🥓' },
+        { emoji: '🍩', name: 'Donut',      msg: 'Donuts are sweet, fluffy, and magical! 🍬' },
+        { emoji: '🍪', name: 'Cookie',     msg: 'Cookies are warm and yummy! 🥛' },
+        { emoji: '🍰', name: 'Cake',       msg: 'Cake means it\'s time to CELEBRATE! 🎉' },
+        { emoji: '🥞', name: 'Pancakes',   msg: 'Pancakes with syrup are the best breakfast! 🍯' },
+        { emoji: '🍓', name: 'Strawberry', msg: 'Strawberries are the prettiest AND yummiest! 💕' },
+        { emoji: '🍭', name: 'Lollipop',   msg: 'Lollipops are sweet all the way through! 🌈' },
+        { emoji: '🍟', name: 'Fries',      msg: 'French fries are crispy and SO good! 🧂' },
+        { emoji: '🧁', name: 'Cupcake',    msg: 'Cupcakes are tiny little cakes of joy! 🌸' },
+      ],
+    };
 
-    const grid = document.getElementById('grid');
+    function buildGrid(type) {
+      const grid = document.getElementById(`${type}-grid`);
+      grid.innerHTML = '';
+      DATA[type].forEach(item => {
+        const card = document.createElement('div');
+        card.className = 'pick-card';
+        card.innerHTML = `<span class="pick-emoji">${item.emoji}</span><div class="pick-name">${item.name}</div>`;
+        card.onclick = () => pick(type, item);
+        grid.appendChild(card);
+      });
+    }
 
-    animals.forEach(a => {
-      const card = document.createElement('div');
-      card.className = 'animal-card';
-      card.innerHTML = `<span class="animal-emoji">${a.emoji}</span><div class="animal-name">${a.name}</div>`;
-      card.onclick = () => pick(a);
-      grid.appendChild(card);
-    });
+    function startGame(type) {
+      document.getElementById('home').style.display = 'none';
+      buildGrid(type);
+      document.getElementById(`${type}-screen`).classList.add('show');
+    }
 
-    function pick(animal) {
-      document.getElementById('picker').style.display = 'none';
-      const result = document.getElementById('result');
-      document.getElementById('bigEmoji').textContent = animal.emoji;
-      document.getElementById('resultTitle').textContent = `You love ${animal.name}s!`;
-      document.getElementById('resultMsg').textContent = animal.msg;
-      result.classList.add('show');
+    function goHome() {
+      document.querySelectorAll('.game-screen').forEach(s => s.classList.remove('show'));
+      document.querySelectorAll('.result').forEach(r => r.classList.remove('show'));
+      document.querySelectorAll('.grid').forEach(g => { g.style.display = ''; });
+      document.getElementById('home').style.display = '';
+    }
+
+    function pick(type, item) {
+      document.getElementById(`${type}-grid`).style.display = 'none';
+      document.getElementById(`${type}-big`).textContent = item.emoji;
+      document.getElementById(`${type}-title`).textContent = `You love ${item.name}!`;
+      document.getElementById(`${type}-msg`).textContent = item.msg;
+      document.getElementById(`${type}-result`).classList.add('show');
       launchConfetti();
     }
 
-    function showPicker() {
-      document.getElementById('result').classList.remove('show');
-      document.getElementById('picker').style.display = '';
+    function resetGame(type) {
+      document.getElementById(`${type}-result`).classList.remove('show');
+      document.getElementById(`${type}-grid`).style.display = '';
     }
 
     function launchConfetti() {
@@ -223,14 +339,14 @@
       for (let i = 0; i < 60; i++) {
         const c = document.createElement('div');
         c.className = 'confetti-piece';
+        const size = 8 + Math.random() * 10;
         c.style.cssText = `
-          left: ${Math.random()*100}vw;
-          background: ${colors[Math.floor(Math.random()*colors.length)]};
-          animation-duration: ${1.5 + Math.random()*2}s;
-          animation-delay: ${Math.random()*0.6}s;
-          width: ${8 + Math.random()*10}px;
-          height: ${8 + Math.random()*10}px;
-          border-radius: ${Math.random() > 0.5 ? '50%' : '2px'};
+          left:${Math.random()*100}vw;
+          width:${size}px; height:${size}px;
+          background:${colors[Math.floor(Math.random()*colors.length)]};
+          border-radius:${Math.random() > 0.5 ? '50%' : '2px'};
+          animation-duration:${1.5 + Math.random()*2}s;
+          animation-delay:${Math.random()*0.6}s;
         `;
         document.body.appendChild(c);
         setTimeout(() => c.remove(), 3500);
