@@ -386,6 +386,10 @@
         <span class="big">🍕</span>
         <div class="label">Pick Your Favorite Food!</div>
       </div>
+      <div class="game-btn" onclick="startGame('flowers')">
+        <span class="big">🌸</span>
+        <div class="label">Pick Your Favorite Flower!</div>
+      </div>
     </div>
   </div>
 
@@ -400,6 +404,20 @@
       <h2 id="animals-title"></h2>
       <p class="result-msg" id="animals-msg"></p>
       <button class="again-btn" onclick="resetGame('animals')">🔄 Pick Again!</button>
+    </div>
+  </div>
+
+  <!-- FLOWER GAME -->
+  <div class="game-screen" id="flowers-screen">
+    <button class="back-btn" onclick="goHome()">← Back to Games</button>
+    <h1>🌸 Pick Your Favorite Flower!</h1>
+    <p class="subtitle">Tap the prettiest one!</p>
+    <div class="grid" id="flowers-grid"></div>
+    <div class="result" id="flowers-result">
+      <div class="big-pick" id="flowers-big"></div>
+      <h2 id="flowers-title"></h2>
+      <p class="result-msg" id="flowers-msg"></p>
+      <button class="again-btn" onclick="resetGame('flowers')">🔄 Pick Again!</button>
     </div>
   </div>
 
@@ -432,6 +450,20 @@
         { emoji: '🐬', name: 'Dolphin',   msg: 'Dolphins are super smart and playful! 🌊' },
         { emoji: '🦄', name: 'Unicorn',   msg: 'Unicorns are the most magical of all! ✨' },
         { emoji: '🐙', name: 'Octopus',   msg: 'Octopuses have EIGHT arms — so cool! 🌊' },
+      ],
+      flowers: [
+        { emoji: '🌸', name: 'Blossom',     msg: 'Blossoms are so soft and dreamy! 🌸' },
+        { emoji: '🌹', name: 'Rose',         msg: 'Roses are the most beautiful flower! ❤️' },
+        { emoji: '🌻', name: 'Sunflower',    msg: 'Sunflowers always face the sunshine! ☀️' },
+        { emoji: '🌷', name: 'Tulip',        msg: 'Tulips are so colourful and cheerful! 🌈' },
+        { emoji: '🌺', name: 'Hibiscus',     msg: 'Hibiscus flowers are tropical and gorgeous! 🏝️' },
+        { emoji: '🌼', name: 'Daisy',        msg: 'Daisies are sweet, simple, and lovely! 💛' },
+        { emoji: '💐', name: 'Bouquet',      msg: 'A whole bouquet — you love them ALL! 🥰' },
+        { emoji: '🪷', name: 'Lotus',        msg: 'Lotus flowers float on water — so magical! ✨' },
+        { emoji: '🌿', name: 'Lavender',     msg: 'Lavender smells AMAZING and is so pretty! 💜' },
+        { emoji: '🌻', name: 'Buttercup',    msg: 'Buttercups are tiny drops of sunshine! 🌟' },
+        { emoji: '🍀', name: 'Lucky Clover', msg: 'A four-leaf clover — you are SO lucky! 🍀' },
+        { emoji: '🌸', name: 'Cherry Blossom', msg: 'Cherry blossoms are pure magic in spring! 🌸✨' },
       ],
       foods: [
         { emoji: '🍕', name: 'Pizza',      msg: 'Pizza is SO yummy — best food ever! 🧀' },
