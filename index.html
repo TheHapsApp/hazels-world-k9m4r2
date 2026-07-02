@@ -493,7 +493,21 @@
         { emoji: '🍹', name: 'Tropical Juice',  msg: 'Tropical juice tastes like a holiday! 🌴' },
         { emoji: '🧋', name: 'Bubble Tea',      msg: 'Bubble tea with chewy balls — so fun! 🫧' },
         { emoji: '🍫', name: 'Hot Chocolate',   msg: 'Hot chocolate is the cosiest drink ever! 🍫' },
-        { emoji: '🫐', name: 'Purple Smoothie',  msg: 'VROOM! Blueberries blending into a purple smoothie! 🫐💜' },
+        { emoji: '🫐', name: 'Purple Smoothie', msg: 'VROOM! Blueberries blending into a purple smoothie! 🫐💜',
+          html: `<svg viewBox="0 0 40 54" width="54" height="54" xmlns="http://www.w3.org/2000/svg">
+            <rect x="8" y="40" width="24" height="12" rx="3" fill="#6d28d9"/>
+            <circle cx="14" cy="46" r="2.5" fill="#a78bfa"/>
+            <circle cx="20" cy="46" r="2.5" fill="#c4b5fd"/>
+            <circle cx="26" cy="46" r="2.5" fill="#a78bfa"/>
+            <path d="M11,10 L29,10 L27,40 L13,40 Z" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.5"/>
+            <path d="M13,26 L27,26 L26,40 L14,40 Z" fill="#7c3aed" opacity="0.85"/>
+            <circle cx="19" cy="33" r="3" fill="#4c1d95"/>
+            <circle cx="24" cy="30" r="2.2" fill="#4c1d95"/>
+            <circle cx="15" cy="35" r="1.8" fill="#4c1d95"/>
+            <path d="M13,28 Q16,25 13,22" stroke="white" stroke-width="1" fill="none" opacity="0.4"/>
+            <rect x="10" y="5" width="20" height="6" rx="2" fill="#7c3aed"/>
+            <rect x="16" y="1" width="8" height="5" rx="2" fill="#6d28d9"/>
+          </svg>` },
         { emoji: '🍊', name: 'Orange Juice',    msg: 'OJ is sunshine in a glass! ☀️' },
         { emoji: '🍋', name: 'Lemonade',        msg: 'Lemonade is sweet AND sour — so refreshing! 🍋' },
         { emoji: '🫐', name: 'Berry Slushie',   msg: 'Berry slushie is cold, purple, and amazing! 💜' },
@@ -551,7 +565,7 @@
       DATA[type].forEach(item => {
         const card = document.createElement('div');
         card.className = 'pick-card';
-        card.innerHTML = `<span class="pick-emoji">${item.emoji}</span><div class="pick-name">${item.name}</div>`;
+        card.innerHTML = `<span class="pick-emoji">${item.html || item.emoji}</span><div class="pick-name">${item.name}</div>`;
         card.onclick = () => pick(type, item);
         grid.appendChild(card);
       });
