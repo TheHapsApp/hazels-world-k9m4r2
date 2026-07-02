@@ -398,6 +398,10 @@
         <span class="big">🥤</span>
         <div class="label">Pick Your Favorite Drink!</div>
       </div>
+      <div class="game-btn" onclick="startGame('cereals')">
+        <span class="big">🥣</span>
+        <div class="label">Pick Your Favorite Cereal!</div>
+      </div>
     </div>
   </div>
 
@@ -412,6 +416,20 @@
       <h2 id="animals-title"></h2>
       <p class="result-msg" id="animals-msg"></p>
       <button class="again-btn" onclick="resetGame('animals')">🔄 Pick Again!</button>
+    </div>
+  </div>
+
+  <!-- CEREAL GAME -->
+  <div class="game-screen" id="cereals-screen">
+    <button class="back-btn" onclick="goHome()">← Back to Games</button>
+    <h1>🥣 Pick Your Favorite Cereal!</h1>
+    <p class="subtitle">Tap the crunchiest one!</p>
+    <div class="grid" id="cereals-grid"></div>
+    <div class="result" id="cereals-result">
+      <div class="big-pick" id="cereals-big"></div>
+      <h2 id="cereals-title"></h2>
+      <p class="result-msg" id="cereals-msg"></p>
+      <button class="again-btn" onclick="resetGame('cereals')">🔄 Pick Again!</button>
     </div>
   </div>
 
@@ -486,6 +504,20 @@
         { emoji: '🐬', name: 'Dolphin',   msg: 'Dolphins are super smart and playful! 🌊' },
         { emoji: '🦄', name: 'Unicorn',   msg: 'Unicorns are the most magical of all! ✨' },
         { emoji: '🐙', name: 'Octopus',   msg: 'Octopuses have EIGHT arms — so cool! 🌊' },
+      ],
+      cereals: [
+        { emoji: '🌈', name: 'Froot Loops',          msg: 'Froot Loops are so colourful and yummy! 🌈' },
+        { emoji: '🍀', name: 'Lucky Charms',          msg: 'Lucky Charms have magical marshmallows! ✨' },
+        { emoji: '🍫', name: 'Cocoa Puffs',           msg: 'Cocoa Puffs make your milk chocolatey! 🍫' },
+        { emoji: '❄️', name: 'Frosted Flakes',        msg: 'They\'re GRREAT! So sweet and crunchy! 🐯' },
+        { emoji: '🍪', name: 'Cookie Crisp',          msg: 'Tiny cookies in a bowl — best idea EVER! 🍪' },
+        { emoji: '⭐', name: 'Cinnamon Toast Crunch', msg: 'Cinnamon Toast Crunch tastes like a cinnamon roll! 😍' },
+        { emoji: '🌽', name: 'Corn Flakes',           msg: 'Corn Flakes are classic and super crunchy! 🌽' },
+        { emoji: '⭕', name: 'Cheerios',              msg: 'Cheerios are little circles of yum! 🥛' },
+        { emoji: '🎨', name: 'Fruity Pebbles',        msg: 'Fruity Pebbles are tiny and SO colourful! 🎨' },
+        { emoji: '⚓', name: 'Cap\'n Crunch',         msg: 'Cap\'n Crunch is sweet and SO crunchy it tickles! ⚓' },
+        { emoji: '💥', name: 'Rice Krispies',         msg: 'Snap! Crackle! Pop! The noisiest cereal! 💥' },
+        { emoji: '🍯', name: 'Honey Nut Cheerios',    msg: 'Honey Nut Cheerios taste like sweet honey! 🐝' },
       ],
       drinks: [
         { emoji: '🧃', name: 'Juice Box',      msg: 'Juice boxes are the BEST after playing! 🍓' },
