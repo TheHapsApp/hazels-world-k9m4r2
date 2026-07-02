@@ -406,6 +406,22 @@
         <span class="big">🦄</span>
         <div class="label">Pick Your Favorite Unicorn!</div>
       </div>
+      <div class="game-btn" onclick="startGame('fruits')">
+        <span class="big">🍓</span>
+        <div class="label">Pick Your Favorite Fruit!</div>
+      </div>
+      <div class="game-btn" onclick="startGame('princesses')">
+        <span class="big">👸</span>
+        <div class="label">Pick Your Favorite Princess!</div>
+      </div>
+      <div class="game-btn" onclick="startGame('superpowers')">
+        <span class="big">⚡</span>
+        <div class="label">Pick Your Favorite Superpower!</div>
+      </div>
+      <div class="game-btn" onclick="startGame('vegetables')">
+        <span class="big">🥦</span>
+        <div class="label">Pick Your Favorite Vegetable!</div>
+      </div>
     </div>
   </div>
 
@@ -420,6 +436,62 @@
       <h2 id="animals-title"></h2>
       <p class="result-msg" id="animals-msg"></p>
       <button class="again-btn" onclick="resetGame('animals')">🔄 Pick Again!</button>
+    </div>
+  </div>
+
+  <!-- FRUIT GAME -->
+  <div class="game-screen" id="fruits-screen">
+    <button class="back-btn" onclick="goHome()">← Back to Games</button>
+    <h1>🍓 Pick Your Favorite Fruit!</h1>
+    <p class="subtitle">Tap the juiciest one!</p>
+    <div class="grid" id="fruits-grid"></div>
+    <div class="result" id="fruits-result">
+      <div class="big-pick" id="fruits-big"></div>
+      <h2 id="fruits-title"></h2>
+      <p class="result-msg" id="fruits-msg"></p>
+      <button class="again-btn" onclick="resetGame('fruits')">🔄 Pick Again!</button>
+    </div>
+  </div>
+
+  <!-- PRINCESS GAME -->
+  <div class="game-screen" id="princesses-screen">
+    <button class="back-btn" onclick="goHome()">← Back to Games</button>
+    <h1>👸 Pick Your Favorite Princess!</h1>
+    <p class="subtitle">Tap the most royal one!</p>
+    <div class="grid" id="princesses-grid"></div>
+    <div class="result" id="princesses-result">
+      <div class="big-pick" id="princesses-big"></div>
+      <h2 id="princesses-title"></h2>
+      <p class="result-msg" id="princesses-msg"></p>
+      <button class="again-btn" onclick="resetGame('princesses')">🔄 Pick Again!</button>
+    </div>
+  </div>
+
+  <!-- SUPERPOWER GAME -->
+  <div class="game-screen" id="superpowers-screen">
+    <button class="back-btn" onclick="goHome()">← Back to Games</button>
+    <h1>⚡ Pick Your Favorite Superpower!</h1>
+    <p class="subtitle">Tap the one you'd want most!</p>
+    <div class="grid" id="superpowers-grid"></div>
+    <div class="result" id="superpowers-result">
+      <div class="big-pick" id="superpowers-big"></div>
+      <h2 id="superpowers-title"></h2>
+      <p class="result-msg" id="superpowers-msg"></p>
+      <button class="again-btn" onclick="resetGame('superpowers')">🔄 Pick Again!</button>
+    </div>
+  </div>
+
+  <!-- VEGETABLE GAME -->
+  <div class="game-screen" id="vegetables-screen">
+    <button class="back-btn" onclick="goHome()">← Back to Games</button>
+    <h1>🥦 Pick Your Favorite Vegetable!</h1>
+    <p class="subtitle">Tap your favourite — even if it's yucky! 😄</p>
+    <div class="grid" id="vegetables-grid"></div>
+    <div class="result" id="vegetables-result">
+      <div class="big-pick" id="vegetables-big"></div>
+      <h2 id="vegetables-title"></h2>
+      <p class="result-msg" id="vegetables-msg"></p>
+      <button class="again-btn" onclick="resetGame('vegetables')">🔄 Pick Again!</button>
     </div>
   </div>
 
@@ -522,6 +594,62 @@
         { emoji: '🐬', name: 'Dolphin',   msg: 'Dolphins are super smart and playful! 🌊' },
         { emoji: '🦄', name: 'Unicorn',   msg: 'Unicorns are the most magical of all! ✨' },
         { emoji: '🐙', name: 'Octopus',   msg: 'Octopuses have EIGHT arms — so cool! 🌊' },
+      ],
+      fruits: [
+        { emoji: '🍓', name: 'Strawberry',  msg: 'Strawberries are red, juicy, and SO sweet! 💕' },
+        { emoji: '🍉', name: 'Watermelon',  msg: 'Watermelon is the best summer treat ever! 🌞' },
+        { emoji: '🍇', name: 'Grapes',      msg: 'Grapes are juicy little bubbles of yum! 💜' },
+        { emoji: '🍊', name: 'Orange',      msg: 'Oranges are sunshine you can eat! ☀️' },
+        { emoji: '🍋', name: 'Lemon',       msg: 'Lemons are sour and make your face go funny! 😝' },
+        { emoji: '🍑', name: 'Peach',       msg: 'Peaches are soft, fuzzy, and delicious! 🍑' },
+        { emoji: '🍒', name: 'Cherry',      msg: 'Cherries are tiny but packed with flavour! ❤️' },
+        { emoji: '🍍', name: 'Pineapple',   msg: 'Pineapple is sweet AND a little bit spiky! 🌴' },
+        { emoji: '🥭', name: 'Mango',       msg: 'Mango is the tropical king of all fruits! 👑' },
+        { emoji: '🍌', name: 'Banana',      msg: 'Bananas give you energy to run and jump! 🐒' },
+        { emoji: '🫐', name: 'Blueberry',   msg: 'Blueberries are tiny, purple, and SO tasty! 💙' },
+        { emoji: '🍈', name: 'Melon',       msg: 'Melon is cool, fresh, and super refreshing! 💚' },
+      ],
+      princesses: [
+        { emoji: '👸', name: 'Cinderella',    msg: 'Cinderella showed that kindness always wins! 👠✨' },
+        { emoji: '🌹', name: 'Belle',         msg: 'Belle loves books AND castles — perfect! 📚🌹' },
+        { emoji: '🧊', name: 'Elsa',          msg: 'Elsa can make it snow WHENEVER she wants! ❄️👑' },
+        { emoji: '🍎', name: 'Snow White',    msg: 'Snow White has the most magical friends! 🐦🍎' },
+        { emoji: '🐠', name: 'Ariel',         msg: 'Ariel traded her fins for feet — so brave! 🌊🐚' },
+        { emoji: '🌙', name: 'Rapunzel',      msg: 'Rapunzel has magical hair AND a frying pan! 💛🏰' },
+        { emoji: '🐸', name: 'Tiana',         msg: 'Tiana works hard and never gives up! 🌟💚' },
+        { emoji: '🌺', name: 'Moana',         msg: 'Moana sailed the whole ocean all by herself! 🌊⚓' },
+        { emoji: '🐻', name: 'Merida',        msg: 'Merida is brave, wild, and shoots arrows! 🏹❤️' },
+        { emoji: '🌸', name: 'Mulan',         msg: 'Mulan saved all of China — what a legend! ⚔️🌸' },
+        { emoji: '🌟', name: 'Raya',          msg: 'Raya is the most fearless warrior princess! ⚔️💙' },
+        { emoji: '💎', name: 'Jasmine',       msg: 'Jasmine flew on a magic carpet across the sky! 🌙✨' },
+      ],
+      superpowers: [
+        { emoji: '🦸', name: 'Flying',        msg: 'Imagine soaring above the clouds like a bird! ☁️✈️' },
+        { emoji: '👻', name: 'Invisibility',  msg: 'You could sneak anywhere and nobody would see you! 👀' },
+        { emoji: '⚡', name: 'Super Speed',   msg: 'Run so fast you could circle the whole Earth! 🌍💨' },
+        { emoji: '🧠', name: 'Mind Reading',  msg: 'You\'d always know what everyone is thinking! 🤔💭' },
+        { emoji: '🔥', name: 'Fire Powers',   msg: 'Shoot fireballs from your hands — SO cool! 🔥💥' },
+        { emoji: '❄️', name: 'Ice Powers',    msg: 'Freeze anything you touch like Elsa! ❄️🧊' },
+        { emoji: '💪', name: 'Super Strength',msg: 'Lift a whole BUILDING with one finger! 🏢💪' },
+        { emoji: '🌊', name: 'Water Control', msg: 'Control the ocean and make giant waves! 🌊🐋' },
+        { emoji: '⏱️', name: 'Time Travel',   msg: 'Go forwards OR backwards in time whenever you want! ⏳' },
+        { emoji: '🐾', name: 'Talk to Animals',msg:'Chat with every animal on Earth — even fish! 🐬🦁' },
+        { emoji: '🌱', name: 'Plant Control', msg: 'Make flowers and trees grow wherever you point! 🌳🌸' },
+        { emoji: '✨', name: 'Magic Spells',  msg: 'Cast any spell you can imagine — abracadabra! 🪄✨' },
+      ],
+      vegetables: [
+        { emoji: '🥦', name: 'Broccoli',     msg: 'Broccoli looks like tiny trees — eat a forest! 🌳' },
+        { emoji: '🥕', name: 'Carrot',       msg: 'Carrots are crunchy and help you see in the dark! 🐰' },
+        { emoji: '🌽', name: 'Corn',         msg: 'Corn on the cob is SO fun to eat! 🌽😄' },
+        { emoji: '🥒', name: 'Cucumber',     msg: 'Cucumbers are cool, fresh, and super crunchy! 💚' },
+        { emoji: '🍅', name: 'Tomato',       msg: 'Wait — is it a fruit OR a veggie? Nobody knows! 🤔' },
+        { emoji: '🥬', name: 'Lettuce',      msg: 'Lettuce is crispy and makes salads amazing! 🥗' },
+        { emoji: '🧅', name: 'Onion',        msg: 'Onions make you cry but taste SO good! 😭😋' },
+        { emoji: '🧄', name: 'Garlic',       msg: 'Garlic makes everything taste incredible! 🧄✨' },
+        { emoji: '🫛', name: 'Peas',         msg: 'Peas are tiny little green balls of yum! 💚' },
+        { emoji: '🥑', name: 'Avocado',      msg: 'Avocado is smooth, creamy, and SO trendy! 😎' },
+        { emoji: '🍆', name: 'Aubergine',    msg: 'Aubergine is purple and fancy and delicious! 💜' },
+        { emoji: '🌶️', name: 'Chilli',       msg: 'Chilli is SO spicy it makes your mouth explode! 🔥😱' },
       ],
       unicorns: [
         { emoji: '🌈🦄', name: 'Rainbow Unicorn',  msg: 'Rainbow Unicorn leaves colourful trails everywhere! 🌈✨' },
