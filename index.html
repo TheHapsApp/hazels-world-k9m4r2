@@ -402,6 +402,10 @@
         <span class="big">🥣</span>
         <div class="label">Pick Your Favorite Cereal!</div>
       </div>
+      <div class="game-btn" onclick="startGame('unicorns')">
+        <span class="big">🦄</span>
+        <div class="label">Pick Your Favorite Unicorn!</div>
+      </div>
     </div>
   </div>
 
@@ -416,6 +420,20 @@
       <h2 id="animals-title"></h2>
       <p class="result-msg" id="animals-msg"></p>
       <button class="again-btn" onclick="resetGame('animals')">🔄 Pick Again!</button>
+    </div>
+  </div>
+
+  <!-- UNICORN GAME -->
+  <div class="game-screen" id="unicorns-screen">
+    <button class="back-btn" onclick="goHome()">← Back to Games</button>
+    <h1>🦄 Pick Your Favorite Unicorn!</h1>
+    <p class="subtitle">Tap the most magical one!</p>
+    <div class="grid" id="unicorns-grid"></div>
+    <div class="result" id="unicorns-result">
+      <div class="big-pick" id="unicorns-big"></div>
+      <h2 id="unicorns-title"></h2>
+      <p class="result-msg" id="unicorns-msg"></p>
+      <button class="again-btn" onclick="resetGame('unicorns')">🔄 Pick Again!</button>
     </div>
   </div>
 
@@ -504,6 +522,20 @@
         { emoji: '🐬', name: 'Dolphin',   msg: 'Dolphins are super smart and playful! 🌊' },
         { emoji: '🦄', name: 'Unicorn',   msg: 'Unicorns are the most magical of all! ✨' },
         { emoji: '🐙', name: 'Octopus',   msg: 'Octopuses have EIGHT arms — so cool! 🌊' },
+      ],
+      unicorns: [
+        { emoji: '🌈🦄', name: 'Rainbow Unicorn',  msg: 'Rainbow Unicorn leaves colourful trails everywhere! 🌈✨' },
+        { emoji: '🩷🦄', name: 'Pink Unicorn',     msg: 'Pink Unicorn smells like strawberries and candy floss! 🍓' },
+        { emoji: '⭐🦄', name: 'Golden Unicorn',   msg: 'Golden Unicorn has a shiny glowing horn of pure gold! ✨' },
+        { emoji: '🌙🦄', name: 'Midnight Unicorn', msg: 'Midnight Unicorn gallops across the stars at night! 🌙💜' },
+        { emoji: '🌊🦄', name: 'Ocean Unicorn',    msg: 'Ocean Unicorn can swim AND fly — SO cool! 🌊💙' },
+        { emoji: '🔥🦄', name: 'Fire Unicorn',     msg: 'Fire Unicorn has a blazing mane of real flames! 🔥❤️' },
+        { emoji: '❄️🦄', name: 'Ice Unicorn',      msg: 'Ice Unicorn leaves a trail of sparkly snowflakes! ❄️🤍' },
+        { emoji: '🌸🦄', name: 'Blossom Unicorn',  msg: 'Blossom Unicorn has flowers growing in its mane! 🌸💕' },
+        { emoji: '🍭🦄', name: 'Candy Unicorn',    msg: 'Candy Unicorn tastes like lollipops — don\'t lick it though! 🍭😂' },
+        { emoji: '🌿🦄', name: 'Forest Unicorn',   msg: 'Forest Unicorn hides in the woods and talks to animals! 🌿🍃' },
+        { emoji: '🎨🦄', name: 'Galaxy Unicorn',   msg: 'Galaxy Unicorn has the entire universe in its mane! 🌌💫' },
+        { emoji: '☁️🦄', name: 'Cloud Unicorn',    msg: 'Cloud Unicorn is pure white and soft as a pillow! ☁️🤍' },
       ],
       cereals: [
         { emoji: '🌈', name: 'Froot Loops',          msg: 'Froot Loops are so colourful and yummy! 🌈' },
