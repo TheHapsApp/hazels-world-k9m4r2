@@ -394,6 +394,10 @@
         <span class="big">🌈</span>
         <div class="label">Pick Your Favorite Color!</div>
       </div>
+      <div class="game-btn" onclick="startGame('drinks')">
+        <span class="big">🥤</span>
+        <div class="label">Pick Your Favorite Drink!</div>
+      </div>
     </div>
   </div>
 
@@ -408,6 +412,20 @@
       <h2 id="animals-title"></h2>
       <p class="result-msg" id="animals-msg"></p>
       <button class="again-btn" onclick="resetGame('animals')">🔄 Pick Again!</button>
+    </div>
+  </div>
+
+  <!-- DRINK GAME -->
+  <div class="game-screen" id="drinks-screen">
+    <button class="back-btn" onclick="goHome()">← Back to Games</button>
+    <h1>🥤 Pick Your Favorite Drink!</h1>
+    <p class="subtitle">Tap the most yummy one!</p>
+    <div class="grid" id="drinks-grid"></div>
+    <div class="result" id="drinks-result">
+      <div class="big-pick" id="drinks-big"></div>
+      <h2 id="drinks-title"></h2>
+      <p class="result-msg" id="drinks-msg"></p>
+      <button class="again-btn" onclick="resetGame('drinks')">🔄 Pick Again!</button>
     </div>
   </div>
 
@@ -468,6 +486,20 @@
         { emoji: '🐬', name: 'Dolphin',   msg: 'Dolphins are super smart and playful! 🌊' },
         { emoji: '🦄', name: 'Unicorn',   msg: 'Unicorns are the most magical of all! ✨' },
         { emoji: '🐙', name: 'Octopus',   msg: 'Octopuses have EIGHT arms — so cool! 🌊' },
+      ],
+      drinks: [
+        { emoji: '🧃', name: 'Juice Box',      msg: 'Juice boxes are the BEST after playing! 🍓' },
+        { emoji: '🥛', name: 'Milk',            msg: 'Milk makes your bones super strong! 💪' },
+        { emoji: '🍹', name: 'Tropical Juice',  msg: 'Tropical juice tastes like a holiday! 🌴' },
+        { emoji: '🧋', name: 'Bubble Tea',      msg: 'Bubble tea with chewy balls — so fun! 🫧' },
+        { emoji: '🍵', name: 'Hot Chocolate',   msg: 'Hot chocolate is the cosiest drink ever! 🍫' },
+        { emoji: '🥤', name: 'Smoothie',        msg: 'Smoothies are fruity, thick, and yummy! 🍓🍌' },
+        { emoji: '🍊', name: 'Orange Juice',    msg: 'OJ is sunshine in a glass! ☀️' },
+        { emoji: '🍋', name: 'Lemonade',        msg: 'Lemonade is sweet AND sour — so refreshing! 🍋' },
+        { emoji: '🫐', name: 'Berry Slushie',   msg: 'Berry slushie is cold, purple, and amazing! 💜' },
+        { emoji: '🍓', name: 'Strawberry Shake',msg: 'Strawberry milkshake is the DREAMIEST drink! 🩷' },
+        { emoji: '💧', name: 'Water',           msg: 'Water keeps you going all day long! 💦' },
+        { emoji: '🧊', name: 'Iced Lemonade',   msg: 'Icy cold lemonade on a hot day — YES! 🌞' },
       ],
       colors: [
         { emoji: '🩷', name: 'Pink',        msg: 'Pink is sweet, fun, and totally fabulous! 💅' },
