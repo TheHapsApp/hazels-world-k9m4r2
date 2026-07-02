@@ -390,6 +390,10 @@
         <span class="big">🌸</span>
         <div class="label">Pick Your Favorite Flower!</div>
       </div>
+      <div class="game-btn" onclick="startGame('colors')">
+        <span class="big">🌈</span>
+        <div class="label">Pick Your Favorite Color!</div>
+      </div>
     </div>
   </div>
 
@@ -404,6 +408,20 @@
       <h2 id="animals-title"></h2>
       <p class="result-msg" id="animals-msg"></p>
       <button class="again-btn" onclick="resetGame('animals')">🔄 Pick Again!</button>
+    </div>
+  </div>
+
+  <!-- COLOR GAME -->
+  <div class="game-screen" id="colors-screen">
+    <button class="back-btn" onclick="goHome()">← Back to Games</button>
+    <h1>🌈 Pick Your Favorite Color!</h1>
+    <p class="subtitle">Tap the one you love the most!</p>
+    <div class="grid" id="colors-grid"></div>
+    <div class="result" id="colors-result">
+      <div class="big-pick" id="colors-big"></div>
+      <h2 id="colors-title"></h2>
+      <p class="result-msg" id="colors-msg"></p>
+      <button class="again-btn" onclick="resetGame('colors')">🔄 Pick Again!</button>
     </div>
   </div>
 
@@ -450,6 +468,20 @@
         { emoji: '🐬', name: 'Dolphin',   msg: 'Dolphins are super smart and playful! 🌊' },
         { emoji: '🦄', name: 'Unicorn',   msg: 'Unicorns are the most magical of all! ✨' },
         { emoji: '🐙', name: 'Octopus',   msg: 'Octopuses have EIGHT arms — so cool! 🌊' },
+      ],
+      colors: [
+        { emoji: '🩷', name: 'Pink',        msg: 'Pink is sweet, fun, and totally fabulous! 💅' },
+        { emoji: '💜', name: 'Purple',      msg: 'Purple is the color of magic and royalty! 👑' },
+        { emoji: '❤️', name: 'Red',         msg: 'Red is bold, brave, and full of love! ❤️‍🔥' },
+        { emoji: '🧡', name: 'Orange',      msg: 'Orange is warm, sunny, and SO happy! 🍊' },
+        { emoji: '💛', name: 'Yellow',      msg: 'Yellow is bright like sunshine and joy! ☀️' },
+        { emoji: '💚', name: 'Green',       msg: 'Green is fresh like grass and nature! 🌿' },
+        { emoji: '💙', name: 'Blue',        msg: 'Blue is calm like the sky and the ocean! 🌊' },
+        { emoji: '🩵', name: 'Light Blue',  msg: 'Light blue is as dreamy as a soft sky! ☁️' },
+        { emoji: '🤍', name: 'White',       msg: 'White is pure, clean, and beautiful! 🕊️' },
+        { emoji: '🖤', name: 'Black',       msg: 'Black is sleek, cool, and super stylish! 🐈‍⬛' },
+        { emoji: '🤎', name: 'Brown',       msg: 'Brown is cozy like chocolate and warm hugs! 🍫' },
+        { emoji: '🌈', name: 'Rainbow',     msg: 'You love ALL the colors — a rainbow heart! 🌈✨' },
       ],
       flowers: [
         { emoji: '🌸', name: 'Blossom',     msg: 'Blossoms are so soft and dreamy! 🌸' },
