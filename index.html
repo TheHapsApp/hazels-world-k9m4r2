@@ -422,6 +422,10 @@
         <span class="big">🥦</span>
         <div class="label">Pick Your Favorite Vegetable!</div>
       </div>
+      <div class="game-btn" onclick="startGame('gems')">
+        <span class="big">💎</span>
+        <div class="label">Pick Your Favorite Gem!</div>
+      </div>
     </div>
   </div>
 
@@ -436,6 +440,20 @@
       <h2 id="animals-title"></h2>
       <p class="result-msg" id="animals-msg"></p>
       <button class="again-btn" onclick="resetGame('animals')">🔄 Pick Again!</button>
+    </div>
+  </div>
+
+  <!-- GEM GAME -->
+  <div class="game-screen" id="gems-screen">
+    <button class="back-btn" onclick="goHome()">← Back to Games</button>
+    <h1>💎 Pick Your Favorite Gem!</h1>
+    <p class="subtitle">Tap the most sparkly one!</p>
+    <div class="grid" id="gems-grid"></div>
+    <div class="result" id="gems-result">
+      <div class="big-pick" id="gems-big"></div>
+      <h2 id="gems-title"></h2>
+      <p class="result-msg" id="gems-msg"></p>
+      <button class="again-btn" onclick="resetGame('gems')">🔄 Pick Again!</button>
     </div>
   </div>
 
@@ -594,6 +612,20 @@
         { emoji: '🐬', name: 'Dolphin',   msg: 'Dolphins are super smart and playful! 🌊' },
         { emoji: '🦄', name: 'Unicorn',   msg: 'Unicorns are the most magical of all! ✨' },
         { emoji: '🐙', name: 'Octopus',   msg: 'Octopuses have EIGHT arms — so cool! 🌊' },
+      ],
+      gems: [
+        { emoji: '💎', name: 'Diamond',     msg: 'Diamonds are the hardest and sparkliest gem of all! ✨' },
+        { emoji: '❤️', name: 'Ruby',        msg: 'Rubies are deep red and absolutely gorgeous! ❤️🔥' },
+        { emoji: '💚', name: 'Emerald',     msg: 'Emeralds are rich green and super rare! 🌿👑' },
+        { emoji: '💙', name: 'Sapphire',    msg: 'Sapphires are as blue as the sky and ocean! 🌊☀️' },
+        { emoji: '💜', name: 'Amethyst',    msg: 'Amethysts are dreamy purple and totally magical! 🔮💜' },
+        { emoji: '🩷', name: 'Rose Quartz', msg: 'Rose Quartz is soft pink and full of love! 🌸💕' },
+        { emoji: '🔮', name: 'Crystal',     msg: 'Crystals are clear and catch rainbows in the light! 🌈✨' },
+        { emoji: '🟡', name: 'Citrine',     msg: 'Citrine is golden yellow like a drop of sunshine! ☀️' },
+        { emoji: '🩵', name: 'Aquamarine',  msg: 'Aquamarine is the colour of tropical ocean water! 🌊🐠' },
+        { emoji: '🔴', name: 'Garnet',      msg: 'Garnets are deep red and incredibly beautiful! 🌹' },
+        { emoji: '🤍', name: 'Pearl',       msg: 'Pearls grow inside oysters — how amazing is that! 🦪✨' },
+        { emoji: '🟠', name: 'Amber',       msg: 'Amber is ancient tree sap turned into gold! 🌳⭐' },
       ],
       fruits: [
         { emoji: '🍓', name: 'Strawberry',  msg: 'Strawberries are red, juicy, and SO sweet! 💕' },
