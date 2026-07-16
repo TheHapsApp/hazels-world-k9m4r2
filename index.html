@@ -438,6 +438,10 @@
         <span class="big">🦜</span>
         <div class="label">Pick Your Favorite Bird!</div>
       </div>
+      <div class="game-btn" onclick="startGame('movies')">
+        <span class="big">🎬</span>
+        <div class="label">Pick Your Favorite Movie!</div>
+      </div>
     </div>
   </div>
 
@@ -648,6 +652,20 @@
       <h2 id="birds-title"></h2>
       <p class="result-msg" id="birds-msg"></p>
       <button class="again-btn" onclick="resetGame('birds')">🔄 Pick Again!</button>
+    </div>
+  </div>
+
+  <!-- MOVIE GAME -->
+  <div class="game-screen" id="movies-screen">
+    <button class="back-btn" onclick="goHome()">← Back to Games</button>
+    <h1>🎬 Pick Your Favorite Movie!</h1>
+    <p class="subtitle">Tap the one you love the most!</p>
+    <div class="grid" id="movies-grid"></div>
+    <div class="result" id="movies-result">
+      <div class="big-pick" id="movies-big"></div>
+      <h2 id="movies-title"></h2>
+      <p class="result-msg" id="movies-msg"></p>
+      <button class="again-btn" onclick="resetGame('movies')">🔄 Pick Again!</button>
     </div>
   </div>
 
@@ -872,6 +890,20 @@
         { emoji: '🐤', name: 'Chick',     msg: 'Baby chicks are tiny, fluffy, and SO cute! 🐣💛' },
         { emoji: '🐔', name: 'Chicken',   msg: 'Chickens go cluck cluck and lay eggs every day! 🥚' },
         { emoji: '🦃', name: 'Turkey',    msg: 'Turkeys gobble and have colourful feathers! 🍂' },
+      ],
+      movies: [
+        { emoji: '❄️', name: 'Frozen',                msg: 'Let it go, let it go — snow magic everywhere! ⛄✨' },
+        { emoji: '🌺', name: 'Moana',                  msg: 'Moana sailed the whole ocean to save her island! 🌊⛵' },
+        { emoji: '🦁', name: 'The Lion King',          msg: 'Hakuna Matata — no worries for the rest of your days! 🌅' },
+        { emoji: '🐠', name: 'Finding Nemo',           msg: 'Just keep swimming, just keep swimming! 🌊🐟' },
+        { emoji: '🧸', name: 'Toy Story',              msg: 'To infinity and beyond with Woody and Buzz! 🚀🤠' },
+        { emoji: '🚗', name: 'Cars',                   msg: 'Ka-chow! Lightning McQueen zooms to the finish line! 🏁' },
+        { emoji: '🕯️', name: 'Encanto',                msg: 'The Madrigal family lives in the most magical house! ✨🏠' },
+        { emoji: '🕹️', name: 'Wreck-It Ralph',         msg: 'Ralph jumps between video games to save the day! 🎮' },
+        { emoji: '🐉', name: 'How to Train Your Dragon',msg:'Toothless is the best dragon best friend ever! 🔥' },
+        { emoji: '💀', name: 'Coco',                   msg: 'Coco is full of music, memories, and marigolds! 🎸🌼' },
+        { emoji: '🦣', name: 'Ice Age',                msg: 'Manny, Sid, and Diego go on a wild frozen adventure! ❄️' },
+        { emoji: '🎈', name: 'Up',                     msg: 'A house floats away tied to a thousand balloons! 🏠' },
       ],
     };
 
