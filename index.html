@@ -434,6 +434,10 @@
         <span class="big">🎄</span>
         <div class="label">Pick Your Favorite Holiday!</div>
       </div>
+      <div class="game-btn" onclick="startGame('birds')">
+        <span class="big">🦜</span>
+        <div class="label">Pick Your Favorite Bird!</div>
+      </div>
     </div>
   </div>
 
@@ -630,6 +634,20 @@
       <h2 id="holidays-title"></h2>
       <p class="result-msg" id="holidays-msg"></p>
       <button class="again-btn" onclick="resetGame('holidays')">🔄 Pick Again!</button>
+    </div>
+  </div>
+
+  <!-- BIRD GAME -->
+  <div class="game-screen" id="birds-screen">
+    <button class="back-btn" onclick="goHome()">← Back to Games</button>
+    <h1>🦜 Pick Your Favorite Bird!</h1>
+    <p class="subtitle">Tap the one you love the most!</p>
+    <div class="grid" id="birds-grid"></div>
+    <div class="result" id="birds-result">
+      <div class="big-pick" id="birds-big"></div>
+      <h2 id="birds-title"></h2>
+      <p class="result-msg" id="birds-msg"></p>
+      <button class="again-btn" onclick="resetGame('birds')">🔄 Pick Again!</button>
     </div>
   </div>
 
@@ -840,6 +858,20 @@
         { emoji: '🕎', name: 'Hanukkah',        msg: 'Eight nights of candles and spinning dreidels! ✨' },
         { emoji: '🪔', name: 'Diwali',          msg: 'The Festival of Lights — so sparkly and bright! ✨' },
         { emoji: '🧧', name: 'Lunar New Year',  msg: 'Red envelopes and dancing dragons! 🐉' },
+      ],
+      birds: [
+        { emoji: '🦅', name: 'Eagle',     msg: 'Eagles soar higher than almost any bird! 🦅☁️' },
+        { emoji: '🦉', name: 'Owl',       msg: 'Owls are wise and can see in the dark! 🌙👀' },
+        { emoji: '🦜', name: 'Parrot',    msg: 'Parrots are SO colourful and can even talk! 🌈🗣️' },
+        { emoji: '🦆', name: 'Duck',      msg: 'Ducks waddle, swim, and say quack quack! 🦆💦' },
+        { emoji: '🐧', name: 'Penguin',   msg: 'Penguins can\'t fly but they can slide on their tummies! 🧊' },
+        { emoji: '🦢', name: 'Swan',      msg: 'Swans glide across the water like royalty! 👑🌊' },
+        { emoji: '🦩', name: 'Flamingo',  msg: 'Flamingos are pink and stand on one leg! 🩷🦵' },
+        { emoji: '🦚', name: 'Peacock',   msg: 'Peacocks show off the most beautiful tail feathers! ✨🌈' },
+        { emoji: '🕊️', name: 'Dove',      msg: 'Doves are gentle, white, and mean peace! 🤍☮️' },
+        { emoji: '🐤', name: 'Chick',     msg: 'Baby chicks are tiny, fluffy, and SO cute! 🐣💛' },
+        { emoji: '🐔', name: 'Chicken',   msg: 'Chickens go cluck cluck and lay eggs every day! 🥚' },
+        { emoji: '🦃', name: 'Turkey',    msg: 'Turkeys gobble and have colourful feathers! 🍂' },
       ],
     };
 
