@@ -426,6 +426,10 @@
         <span class="big">💎</span>
         <div class="label">Pick Your Favorite Gem!</div>
       </div>
+      <div class="game-btn" onclick="startGame('flags')">
+        <span class="big">🚩</span>
+        <div class="label">Pick Your Favorite Flag!</div>
+      </div>
     </div>
   </div>
 
@@ -594,6 +598,20 @@
       <h2 id="foods-title"></h2>
       <p class="result-msg" id="foods-msg"></p>
       <button class="again-btn" onclick="resetGame('foods')">🔄 Pick Again!</button>
+    </div>
+  </div>
+
+  <!-- FLAG GAME -->
+  <div class="game-screen" id="flags-screen">
+    <button class="back-btn" onclick="goHome()">← Back to Games</button>
+    <h1>🚩 Pick Your Favorite Flag!</h1>
+    <p class="subtitle">Tap the one you love the most!</p>
+    <div class="grid" id="flags-grid"></div>
+    <div class="result" id="flags-result">
+      <div class="big-pick" id="flags-big"></div>
+      <h2 id="flags-title"></h2>
+      <p class="result-msg" id="flags-msg"></p>
+      <button class="again-btn" onclick="resetGame('flags')">🔄 Pick Again!</button>
     </div>
   </div>
 
@@ -776,6 +794,20 @@
         { emoji: '🍭', name: 'Lollipop',   msg: 'Lollipops are sweet all the way through! 🌈' },
         { emoji: '🍟', name: 'Fries',      msg: 'French fries are crispy and SO good! 🧂' },
         { emoji: '🧁', name: 'Cupcake',    msg: 'Cupcakes are tiny little cakes of joy! 🌸' },
+      ],
+      flags: [
+        { emoji: '🇺🇸', name: 'USA',        msg: 'Stars and stripes — land of the free! 🦅' },
+        { emoji: '🇯🇵', name: 'Japan',      msg: 'A big red sun on pure white — so simple and pretty! ☀️' },
+        { emoji: '🇫🇷', name: 'France',     msg: 'Blue, white, and red — très chic! 🥐' },
+        { emoji: '🇧🇷', name: 'Brazil',     msg: 'Green, yellow, and a starry blue globe! ⚽🌟' },
+        { emoji: '🇰🇪', name: 'Kenya',      msg: 'A warrior shield right in the middle — so bold! 🛡️' },
+        { emoji: '🇮🇳', name: 'India',      msg: 'Orange, white, and green with a spinning wheel! ☸️' },
+        { emoji: '🇲🇽', name: 'Mexico',     msg: 'An eagle eating a snake on a cactus — wow! 🦅🌵' },
+        { emoji: '🇨🇦', name: 'Canada',     msg: 'A big red maple leaf right in the middle! 🍁' },
+        { emoji: '🇮🇹', name: 'Italy',      msg: 'Green, white, and red like a pizza! 🍕' },
+        { emoji: '🇬🇧', name: 'UK',         msg: 'The Union Jack has crosses going every which way! 👑' },
+        { emoji: '🇦🇺', name: 'Australia',  msg: 'Stars and a tiny flag in the corner — G\'day! 🦘' },
+        { emoji: '🇰🇷', name: 'South Korea',msg: 'A swirly red-and-blue circle — so eye-catching! ☯️' },
       ],
     };
 
