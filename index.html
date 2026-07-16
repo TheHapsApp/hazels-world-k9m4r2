@@ -430,6 +430,10 @@
         <span class="big">🚩</span>
         <div class="label">Pick Your Favorite Flag!</div>
       </div>
+      <div class="game-btn" onclick="startGame('holidays')">
+        <span class="big">🎄</span>
+        <div class="label">Pick Your Favorite Holiday!</div>
+      </div>
     </div>
   </div>
 
@@ -612,6 +616,20 @@
       <h2 id="flags-title"></h2>
       <p class="result-msg" id="flags-msg"></p>
       <button class="again-btn" onclick="resetGame('flags')">🔄 Pick Again!</button>
+    </div>
+  </div>
+
+  <!-- HOLIDAY GAME -->
+  <div class="game-screen" id="holidays-screen">
+    <button class="back-btn" onclick="goHome()">← Back to Games</button>
+    <h1>🎄 Pick Your Favorite Holiday!</h1>
+    <p class="subtitle">Tap the one you love the most!</p>
+    <div class="grid" id="holidays-grid"></div>
+    <div class="result" id="holidays-result">
+      <div class="big-pick" id="holidays-big"></div>
+      <h2 id="holidays-title"></h2>
+      <p class="result-msg" id="holidays-msg"></p>
+      <button class="again-btn" onclick="resetGame('holidays')">🔄 Pick Again!</button>
     </div>
   </div>
 
@@ -808,6 +826,20 @@
         { emoji: '🇬🇧', name: 'UK',         msg: 'The Union Jack has crosses going every which way! 👑' },
         { emoji: '🇦🇺', name: 'Australia',  msg: 'Stars and a tiny flag in the corner — G\'day! 🦘' },
         { emoji: '🇰🇷', name: 'South Korea',msg: 'A swirly red-and-blue circle — so eye-catching! ☯️' },
+      ],
+      holidays: [
+        { emoji: '🎄', name: 'Christmas',       msg: 'Twinkly lights, presents, and cozy pajamas! 🎁✨' },
+        { emoji: '🎃', name: 'Halloween',       msg: 'Costumes, candy, and trick-or-treating! 🍬👻' },
+        { emoji: '🐣', name: 'Easter',          msg: 'Egg hunts, bunnies, and chocolate eggs! 🥚🐰' },
+        { emoji: '🦃', name: 'Thanksgiving',    msg: 'Yummy food, family, and pumpkin pie! 🥧❤️' },
+        { emoji: '💘', name: 'Valentine\'s Day',msg: 'Pink hearts, candy, and sharing love! 💕' },
+        { emoji: '🎆', name: 'New Year\'s Eve', msg: 'Fireworks and a big countdown to midnight! 🎉🕛' },
+        { emoji: '🎇', name: 'Fourth of July',  msg: 'Fireworks light up the WHOLE sky! 🎆🇺🇸' },
+        { emoji: '☘️', name: 'St. Patrick\'s Day',msg:'Green everywhere and searching for gold! 🌈🍀' },
+        { emoji: '🎂', name: 'Birthday',        msg: 'Cake, candles, and making a wish! 🕯️🎉' },
+        { emoji: '🕎', name: 'Hanukkah',        msg: 'Eight nights of candles and spinning dreidels! ✨' },
+        { emoji: '🪔', name: 'Diwali',          msg: 'The Festival of Lights — so sparkly and bright! ✨' },
+        { emoji: '🧧', name: 'Lunar New Year',  msg: 'Red envelopes and dancing dragons! 🐉' },
       ],
     };
 
